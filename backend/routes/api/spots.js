@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { requireAuth } = require('../../utils/auth');
-const { Spot, SpotImage, User, Review } = require('../../db/models');
+const { Spot, SpotImage, User, Review, ReviewImage } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -28,12 +28,12 @@ const validateSpot = [
     check('lat')
       .exists({ checkFalsy: true })
       .notEmpty()
-      .isFloat( { min: -90, max: 90 })
+      .isFloat({ min: -90, max: 90 })
       .withMessage("Latitude is not valid"),
     check('lng')
       .exists({ checkFalsy: true })
       .notEmpty()
-      .isFloat( { min: -180, max: 180 })
+      .isFloat({ min: -180, max: 180 })
       .withMessage("Longitude is not valid"),
     check('name')
       .exists({ checkFalsy: true })
@@ -48,6 +48,19 @@ const validateSpot = [
       .exists({ checkFalsy: true })
       .notEmpty()
       .withMessage("Price per day is required"),
+    handleValidationErrors
+];
+
+const validateReview = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .withMessage("Review text is required"),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .notEmpty()
+        .isFloat({ min: 1, max: 5 })
+        .withMessage("Stars must be an integer from 1 to 5"),
     handleValidationErrors
 ];
 
@@ -104,11 +117,21 @@ router.get('/', async (req, res) => {
             where: { spotId: spot.id }
         })
 
-        spot = spot.toJSON()
+        spot = spot.toJSON();
         spot.avgRating = avgRating;
-        spot.previewImage = previewImage;
+        // spot.previewImage = previewImage.url;
 
-        arr.push(spot)
+        if(previewImage) {
+            spot.previewImage = previewImage.url;
+        }
+        // else {
+        //     res.status = 404;
+        //     res.json({
+        //         message: `Spot has no images`
+        //     })
+        // }
+
+        arr.push(spot);
     }
 
     res.json({ Spots: arr })
@@ -172,6 +195,80 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
     })
 
     res.json(newSpot)
+})
+
+// Get all Reviews by a Spot's id
+router.get('/:spotId/reviews', async (req, res) => {
+    const { spotId } = req.params;
+    let spot = await Spot.findByPk(spotId)
+
+    if(!spot) {
+        res.status = 404;
+        res.json({
+            message: `Spot couldn't be found`
+        })
+    }
+
+    const reviews = await Review.findAll({
+        where: { spotId: spotId }
+    })
+    let arr = [];
+
+    for (let i = 0; i < reviews.length; i++) {
+        let review = reviews[i]
+
+        const user = await User.findOne({
+            attributes: ['id', 'firstName', 'lastName'],
+            where: { id: spotId }
+        })
+
+        const reviewImage = await ReviewImage.findAll({
+            attributes: ['id', 'url'],
+            where: { reviewId: spotId }
+        })
+
+        review = review.toJSON()
+        review.User = user;
+        review.ReviewImages = reviewImage;
+
+        arr.push(review)
+    }
+
+    res.json({ Reviews: arr })
+})
+
+// Create a Review for a Spot based on the Spot's id
+router.post('/:spotId/reviews', requireAuth, validateReview, async (req, res) => {
+    const { review, stars } = req.body;
+    const { user } = req;
+    const { spotId } = req.params;
+    let spot = await Spot.findByPk(spotId);
+    const reviewSubmitted = await Review.findOne({
+        where: { userId: user.id, spotId}
+    })
+
+    if(!spot) {
+        res.status = 404;
+        res.json({
+            message: `Spot couldn't be found`
+        })
+    }
+
+    if(reviewSubmitted) {
+        res.status = 500;
+        res.json({
+            message: "User already has a review for this spot"
+        })
+    }
+
+    const newReview = await Review.create({
+        userId: user.id,
+        spotId: spot.id,
+        review,
+        stars
+    })
+
+    res.json(newReview)
 })
 
 // Add an Image to a Spot based on the Spot's id
