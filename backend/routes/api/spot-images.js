@@ -11,7 +11,6 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
     const spotImage = await SpotImage.findByPk(req.params.imageId, {
         include: { model: Spot, attributes: ['ownerId'] }
     });
-    // const spot = await Spot.findByPk(spotImage.spotId)
 
     if(!spotImage) {
         res.status(404).json({
