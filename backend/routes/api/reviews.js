@@ -44,7 +44,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
         const previewImage = await SpotImage.findOne({
             attributes: ['url'],
-            where: { spotId: id }
+            where: { spotId: id , preview: true }
         })
 
         const reviewImage = await ReviewImage.findAll({
@@ -55,7 +55,7 @@ router.get('/current', requireAuth, async (req, res) => {
         review = review.toJSON();
         review.User = user;
         spot = spot.toJSON();
-        spot.previewImage = previewImage.url;
+        spot.previewImage = previewImage ? previewImage.url : ''
         review.Spot = spot;
         review.ReviewImages = reviewImage;
 
@@ -76,15 +76,13 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     })
 
     if(!review) {
-        res.status = 404;
-        res.json({
+        res.status(404).json({
             message: `Review couldn't be found`
         })
     }
 
     if(reviewImages >= 10) {
-        res.status = 403;
-        res.json({
+        res.status(403).json({
             message: `Maximum number of images for this resource was reached`
         })
     }
@@ -99,7 +97,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
             url
         })
     } else {
-        res.json({
+        res.status(403).json({
             message: "Forbidden"
         })
     }
@@ -113,8 +111,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
     let updateReview = await Review.findByPk(req.params.reviewId);
 
     if(!updateReview) {
-        res.status = 404;
-        res.json({
+        res.status(404).json({
             message: `Review couldn't be found`
         })
     }
@@ -127,7 +124,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 
         res.json(updateReview)
     } else {
-        res.json({
+        res.status(403).json({
             message: "Forbidden"
         })
     }
@@ -139,8 +136,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
     let review = await Review.findByPk(req.params.reviewId);
 
     if(!review) {
-        res.status = 404;
-        res.json({
+        res.status(404).json({
             message: `Review couldn't be found`
         })
     }
@@ -152,7 +148,7 @@ router.delete('/:reviewId', requireAuth, async (req, res) => {
             "message": "Successfully deleted"
         })
     } else {
-        res.json({
+        res.status(403).json({
             message: "Forbidden"
         })
     }
