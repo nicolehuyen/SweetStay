@@ -444,4 +444,6 @@ router.post('/', requireAuth, validateSpot, async (req, res) => {
     res.status(201).json(newSpot)
 })
 
+
+
 module.exports = router;

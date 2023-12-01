@@ -8,8 +8,12 @@ const router = express.Router();
 // Delete a Review Image
 router.delete('/:imageId', requireAuth, async (req, res) => {
     const { user } = req;
-    const reviewImage = await ReviewImage.findByPk(req.params.imageId);
-    const review = await Review.findByPk(reviewImage.reviewId)
+    const reviewImage = await ReviewImage.findByPk(req.params.imageId, {
+        include: { model: Review, attributes: ['userId'] }
+    });
+    // const review = await Review.findOne({
+    //     where: { id: reviewImage.reviewId }
+    // })
 
     if(!reviewImage) {
         res.status(404).json({
@@ -17,7 +21,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         })
     }
 
-    if(user.id === review.userId) {
+    if(user.id === reviewImage.Review.userId) {
         await reviewImage.destroy();
 
         res.json({
