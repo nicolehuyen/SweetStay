@@ -226,31 +226,21 @@ router.get('/:spotId/reviews', async (req, res) => {
     }
 
     const reviews = await Review.findAll({
-        where: { spotId: spotId }
+        where: { spotId },
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            },
+            {
+                model: ReviewImage,
+                attributes: ['id', 'url']
+            }
+        ],
+        order: [ [ ReviewImage, 'id' ] ]
     })
-    let arr = [];
 
-    for (let i = 0; i < reviews.length; i++) {
-        let review = reviews[i]
-
-        const user = await User.findOne({
-            attributes: ['id', 'firstName', 'lastName'],
-            where: { id: spotId }
-        })
-
-        const reviewImage = await ReviewImage.findAll({
-            attributes: ['id', 'url'],
-            where: { reviewId: spotId }
-        })
-
-        review = review.toJSON()
-        review.User = user;
-        review.ReviewImages = reviewImage;
-
-        arr.push(review)
-    }
-
-    return res.json({ Reviews: arr })
+    return res.json({ Reviews: reviews })
 })
 
 // Create a Review for a Spot based on the Spot's id
