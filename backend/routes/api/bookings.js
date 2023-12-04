@@ -1,10 +1,8 @@
 const express = require('express');
+const { Op } = require('sequelize');
 
 const { requireAuth } = require('../../utils/auth');
 const { Booking, Spot, SpotImage } = require('../../db/models');
-
-// const { check } = require('express-validator');
-// const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
@@ -31,7 +29,7 @@ router.get('/current', requireAuth, async (req, res) => {
 
         booking = booking.toJSON();
         spot = spot.toJSON();
-        spot.previewImage = previewImage ? previewImage.url : ''
+        spot.previewImage = previewImage ? previewImage.url : null
         booking.Spot = spot;
 
         arr.push(booking)
@@ -82,7 +80,10 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     }
 
     const bookings = await Booking.findAll({
-        where: { spotId: updateBooking.spotId }
+        where: {
+            spotId: updateBooking.spotId,
+            id: { [Op.not]: [ updateBooking.id ] }
+        }
     })
 
     let errors = {}
@@ -156,11 +157,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         })
     }
 
-    const spot = await Spot.findOne({
-        where: { ownerId: user.id }
-    })
-
-    if(user.id === booking.userId || spot.ownerId === booking.spotId) {
+    if(user.id === booking.userId) {
         await booking.destroy();
 
         return res.json({

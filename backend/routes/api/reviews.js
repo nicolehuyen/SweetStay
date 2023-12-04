@@ -25,39 +25,35 @@ const validateReview = [
 router.get('/current', requireAuth, async (req, res) => {
     const { user } = req;
     let reviews = await Review.findAll({
-        where: { userId: user.id }
+        where: { userId: user.id },
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            },
+            {
+                model: Spot,
+                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price' ]
+            },
+            {
+                model: ReviewImage,
+                attributes: ['id', 'url']
+            }
+        ],
+        order: [ [ ReviewImage, 'id' ] ]
     })
     let arr = [];
 
     for (let i = 0; i < reviews.length; i++) {
         let review = reviews[i]
 
-        const user = await User.findOne({
-            attributes: ['id', 'firstName', 'lastName'],
-            where: { id: review.userId }
-        })
-
-        let spot = await Spot.findOne({
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price' ],
-            where: { id: review.spotId }
-        })
-
-        const previewImage = await SpotImage.findOne({
+        const previewImage = await SpotImage.findByPk(review.Spot.id, {
             attributes: ['url'],
-            where: { spotId: review.spotId , preview: true }
-        })
-
-        const reviewImage = await ReviewImage.findAll({
-            attributes: ['id', 'url'],
-            where: { reviewId: review.userId }
+            where: { preview: true }
         })
 
         review = review.toJSON();
-        review.User = user;
-        spot = spot.toJSON();
-        spot.previewImage = previewImage ? previewImage.url : ''
-        review.Spot = spot;
-        review.ReviewImages = reviewImage;
+        review.Spot.previewImage = previewImage ? previewImage.url : null
 
         arr.push(review)
     }
@@ -71,9 +67,6 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const { user } = req;
     const { reviewId } = req.params;
     let review = await Review.findByPk(reviewId);
-    const reviewImages = await ReviewImage.count({
-        where: { reviewId }
-    })
 
     if(!review) {
         return res.status(404).json({
@@ -81,13 +74,17 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         })
     }
 
-    if(reviewImages >= 10) {
-        return res.status(403).json({
-            message: `Maximum number of images for this resource was reached`
-        })
-    }
-
     if(user.id === review.userId) {
+        const reviewImages = await ReviewImage.count({
+            where: { reviewId }
+        })
+
+        if(reviewImages >= 10) {
+            return res.status(403).json({
+                message: `Maximum number of images for this resource was reached`
+            })
+        }
+
         const image = await review.createReviewImage({
             url
         })
@@ -101,7 +98,6 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
             message: "Forbidden"
         })
     }
-
 })
 
 // Edit a Review

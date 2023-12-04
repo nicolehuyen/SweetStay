@@ -93,8 +93,8 @@ router.get('/current', requireAuth, async (req, res) => {
         })
 
         spot = spot.toJSON()
-        spot.avgRating = avgRating ? avgRating : ''
-        spot.previewImage = previewImage ? previewImage.url : ''
+        spot.avgRating = avgRating ? avgRating : null
+        spot.previewImage = previewImage ? previewImage.url : null
 
         arr.push(spot)
     }
@@ -135,7 +135,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 })
 
 // Create a Booking from a Spot based on the Spot's id
-router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+router.post('/:spotId/bookings', requireAuth, async (req, res, next) => {
     const { startDate, endDate } = req.body;
     const { user } = req;
     const { spotId } = req.params;
@@ -348,7 +348,7 @@ router.get('/:spotId', async (req, res) => {
 
     spot = spot.toJSON()
     spot.numReviews = numReviews;
-    spot.avgRating = avgRating ? avgRating : ''
+    spot.avgRating = avgRating ? avgRating : null
     spot.SpotImages = spotImage;
     spot.Owner = owner;
 
@@ -502,8 +502,8 @@ router.get('/', async (req, res) => {
         })
 
         spot = spot.toJSON();
-        spot.avgRating = avgRating ? avgRating : ''
-        spot.previewImage = previewImage ? previewImage.url : ''
+        spot.avgRating = avgRating ? avgRating : null
+        spot.previewImage = previewImage ? previewImage.url : null
 
         arr.push(spot);
     }
