@@ -439,9 +439,11 @@ router.get('/', async (req, res) => {
     }
 
     if(Object.keys(errors).length) {
-        const err = new Error()
-        err.message = "Bad Request"
-        err.errors = errors
+        const err = {
+            message: "Bad Request",
+            errors: errors
+        }
+
         return res.status(400).json(err)
     }
 

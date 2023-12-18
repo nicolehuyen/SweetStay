@@ -28,12 +28,47 @@ module.exports = {
     {
       spotId: 2,
       url: 'url string 2',
-      preview: false
+      preview: true
     },
     {
       spotId: 3,
       url: 'url string 3',
       preview: true
+    },
+    {
+      spotId: 4,
+      url: 'url string 4',
+      preview: true
+    },
+    {
+      spotId: 5,
+      url: 'url string 5',
+      preview: true
+    },
+    {
+      spotId: 6,
+      url: 'url string 6',
+      preview: false
+    },
+    {
+      spotId: 7,
+      url: 'url string 7',
+      preview: false
+    },
+    {
+      spotId: 8,
+      url: 'url string 8',
+      preview: false
+    },
+    {
+      spotId: 9,
+      url: 'url string 9',
+      preview: false
+    },
+    {
+      spotId: 10,
+      url: 'url string 10',
+      preview: false
     }
    ], { validate: true })
   },
@@ -48,7 +83,7 @@ module.exports = {
     options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1, 2, 3] }
+      spotId: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }
     }, {})
   }
 };
