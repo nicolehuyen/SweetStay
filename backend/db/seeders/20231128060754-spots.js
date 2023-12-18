@@ -55,31 +55,91 @@ module.exports = {
       name: 'Home Three',
       description: 'Small trendy home',
       price: 140
+    },
+    {
+      ownerId: 4,
+      address: '444 Meadow Lane',
+      city: 'Tampa',
+      state: 'Florida',
+      country: 'United States of America',
+      lat: 27.9505753,
+      lng: -82.4571760,
+      name: 'Home Four',
+      description: 'Cozy two story home',
+      price: 95
+    },
+    {
+      ownerId: 5,
+      address: '555 Hustle Street',
+      city: 'Chicago',
+      state: 'Illinois',
+      country: 'United States of America',
+      lat: 41.8781130,
+      lng: -87.6297997,
+      name: 'Home Five',
+      description: 'Urban one story home',
+      price: 125
+    },
+    {
+      ownerId: 6,
+      address: '1806 Honey Road',
+      city: 'Atlanta',
+      state: 'Georgia',
+      country: 'United States of America',
+      lat: 50.7782555,
+      lng: -100.4134312,
+      name: 'Home Six',
+      description: 'Home sweet home',
+      price: 75
+    },
+    {
+      ownerId: 7,
+      address: '678 Flower Pond Lane',
+      city: 'Little Rock',
+      state: 'Arkansas',
+      country: 'United States of America',
+      lat: 24.1231534,
+      lng: -96.7240573,
+      name: 'Home Seven',
+      description: 'Great place for family',
+      price: 60
+    },
+    {
+      ownerId: 8,
+      address: '456 Fruit Town',
+      city: 'Boston',
+      state: 'Massachusetts',
+      country: 'United States of America',
+      lat: 61.7127763,
+      lng: -85.0059744,
+      name: 'Home Eight',
+      description: 'Nice uptown place',
+      price: 100
+    },
+    {
+      ownerId: 9,
+      address: '7895 Hollow Blvd',
+      city: 'Portland',
+      state: 'Oregon',
+      country: 'United States of America',
+      lat: 20.9505753,
+      lng: -60.4571760,
+      name: 'Home Nine',
+      description: 'Lots of nature around',
+      price: 90
+    },
+    {
+      ownerId: 10,
+      address: '8674 Queens Lane',
+      city: 'Greensboro',
+      state: 'North Carolina',
+      country: 'United States of America',
+      lat: 55.8781130,
+      lng: -80.6297997,
+      name: 'Home Ten',
+      description: 'Family vibes and nature',
+      price: 90
     }
-    // {
-    //   ownerId: 4,
-    //   address: '444 Meadow Lane',
-    //   city: 'Tampa',
-    //   state: 'Florida',
-    //   country: 'United States of America',
-    //   lat: 27.9505753,
-    //   lng: -82.4571760,
-    //   name: 'Home Four',
-    //   description: 'Cozy two story home',
-    //   price: 95
-    // },
-    // {
-    //   ownerId: 5,
-    //   address: '555 Hustle Street',
-    //   city: 'Chicago',
-    //   state: 'Illinois',
-    //   country: 'United States of America',
-    //   lat: 41.8781130,
-    //   lng: -87.6297997,
-    //   name: 'Home Five',
-    //   description: 'Urban one story home',
-    //   price: 125
-    // }
   ], { validate: true })
   },
 
@@ -93,7 +153,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      ownerId: { [Op.in]: [1, 2, 3] }
+      ownerId: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }
     }, {})
   }
 };
