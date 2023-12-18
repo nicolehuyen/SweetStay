@@ -32,5 +32,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ModalProvider>
   </React.StrictMode>
 );
-
-// testing branch pull
