@@ -1,59 +1,65 @@
 {
-  "hash": "706ba963",
-  "browserHash": "9fad2d98",
+  "hash": "955239f5",
+  "browserHash": "b9b51f12",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "a80f4a1c",
+      "fileHash": "6b198049",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "63b7e716",
+      "fileHash": "45cb7a8a",
       "needsInterop": true
     },
     "react-redux": {
       "src": "../../node_modules/react-redux/es/index.js",
       "file": "react-redux.js",
-      "fileHash": "666085cd",
+      "fileHash": "50290aba",
       "needsInterop": false
     },
     "js-cookie": {
       "src": "../../node_modules/js-cookie/dist/js.cookie.mjs",
       "file": "js-cookie.js",
-      "fileHash": "d30041b2",
+      "fileHash": "93069004",
       "needsInterop": false
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "635f11e1",
+      "fileHash": "9ca8f4c3",
       "needsInterop": false
+    },
+    "react-dom": {
+      "src": "../../node_modules/react-dom/index.js",
+      "file": "react-dom.js",
+      "fileHash": "54e09543",
+      "needsInterop": true
     },
     "redux": {
       "src": "../../node_modules/redux/es/redux.js",
       "file": "redux.js",
-      "fileHash": "ede703ac",
+      "fileHash": "90234b39",
       "needsInterop": false
     },
     "redux-thunk": {
       "src": "../../node_modules/redux-thunk/es/index.js",
       "file": "redux-thunk.js",
-      "fileHash": "186fcc7c",
+      "fileHash": "e4ccaf86",
       "needsInterop": false
     },
     "redux-logger": {
       "src": "../../node_modules/redux-logger/dist/redux-logger.js",
       "file": "redux-logger.js",
-      "fileHash": "f6721020",
+      "fileHash": "43daddfb",
       "needsInterop": true
     }
   },
   "chunks": {
-    "chunk-DZXRV6RW": {
-      "file": "chunk-DZXRV6RW.js"
+    "chunk-D5SJRT53": {
+      "file": "chunk-D5SJRT53.js"
     },
     "chunk-ZAUFE7H7": {
       "file": "chunk-ZAUFE7H7.js"
