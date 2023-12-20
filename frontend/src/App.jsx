@@ -8,7 +8,7 @@ import CurrentSpots from './components/Spots/CurrentSpots';
 import SpotDetails from './components/Spots/SpotDetails';
 import CreateSpot from './components/Spots/CreateSpot';
 import UpdateSpot from './components/Spots/UpdateSpot';
-import DeleteSpot from './components/Spots/DeleteSpot';
+// import DeleteSpot from './components/Spots/DeleteSpot';
 
 function Layout() {
   const dispatch = useDispatch();
