@@ -1,0 +1,50 @@
+.section {
+    display: flex;
+    justify-content: center;
+}
+
+.spots-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 20px;
+    row-gap: 15px;
+    padding-top: 25px;
+    max-width: 1300px;
+}
+
+.spot-link {
+    text-decoration: none;
+    color: black;
+}
+
+.spot-image {
+    object-fit: cover;
+    width: 260px;
+    height: 260px;
+    border-radius: 5%;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.spot-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.spot-price {
+    margin: 0px;
+    padding-top: 5px;
+}
+
+.spot-right {
+    display: flex;
+    justify-content: flex-end;
+}
