@@ -35,7 +35,7 @@ function SpotDetails() {
                     <img src={spot.SpotImages[0].url} alt='image1' />
                 </div>
                 <div className="small-images">
-                    {arr.map((image) => (<img src={image.url} alt='image' />))}
+                    {arr.map((image) => (<img key={image.id} src={image.url} alt='image' />))}
                 </div>
             </div>
         </section>
