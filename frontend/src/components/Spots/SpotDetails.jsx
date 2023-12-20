@@ -16,15 +16,15 @@ function SpotDetails() {
     if(!spot) return null
 
     // spot images
-    let arr = []
+    // let arr = []
 
-    for(let i = 1; i < 5; i++) {
-        let image = spot.SpotImages[i]
+    // for(let i = 1; i < 5; i++) {
+    //     let image = spot.SpotImages[i]
 
-        if(image !== undefined) {
-            arr.push(image)
-        }
-    }
+    //     if(image !== undefined) {
+    //         arr.push(image)
+    //     }
+    // }
 
     return (
         <section>
@@ -32,10 +32,10 @@ function SpotDetails() {
             <span>{spot.city}, {spot.state}, {spot.country}</span>
             <div className="image-container">
                 <div className="large-image">
-                    <img src={spot.SpotImages[0].url} alt='image1' />
+                    <img src={spot.SpotImages?.[0].url} alt='image1' />
                 </div>
                 <div className="small-images">
-                    {arr.map((image) => (<img key={image.id} src={image.url} alt='image' />))}
+                    {/* {arr.map((image) => image ? (<img key={image.id} src={image.url} alt='image' />) : 'No Image')} */}
                 </div>
             </div>
         </section>
