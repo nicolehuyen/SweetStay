@@ -1,11 +1,88 @@
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 10px 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.home-link {
+    text-decoration: none;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo {
+    width: 55px;
+    height: 55px;
+}
+
+.page-title {
+    font-family: sans-serif;
+    color: #BCAFD4;
+    padding-left: 5px;
+}
+
+.header-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 5px;
+}
+
+.fa-bars {
+    padding-right: 10px;
+    padding-left: 5px;
+    font-size: 80%;
+}
+
+.profile-button {
+    border-radius: 30px;
+    border-width: thin;
+    padding: 8px 10px;
+    font-size: 20px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 23px;
+    background-color: white;
+    padding: 10px 30px;
+    border: 1px solid black;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 2px 0px;
+}
+
+.user-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-menu-text {
+    display: flex;
+    justify-content: center;
+}
+
+.logout-button {
+    border-radius: 30px;
+    padding: 5px 12px;
+    background-color: #BCAFD4;
+    color: white;
+}
+
 .hidden {
     display: none
-}
-
-.fa-user-circle {
-    cursor: pointer
-}
-
-li {
-    cursor: pointer
 }

@@ -4,6 +4,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
+import './Navigation.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -41,19 +42,19 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      <button className='profile-button' onClick={toggleMenu}>
+        <i className="fas fa-bars" />
         <i className="fas fa-user-circle" />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <span className={ulClassName} ref={ulRef}>
         {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-          </>
+          <div className='user-menu'>
+            <span className='user-menu-text'>Hello, {user.firstName}</span>
+            <span className='user-menu-text'>{user.email}</span>
+            <span className='user-menu-text'>
+              <button className='logout-button' onClick={logout}>Log Out</button>
+            </span>
+          </div>
         ) : (
           <>
             <OpenModalMenuItem
@@ -68,7 +69,7 @@ function ProfileButton({ user }) {
             />
           </>
         )}
-      </ul>
+      </span>
     </>
   );
 }
