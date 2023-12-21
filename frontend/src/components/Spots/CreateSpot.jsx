@@ -113,8 +113,7 @@ function CreateSpot() {
 
         const submit = await dispatch(createSpotThunk(newSpot))
 
-        if(!submit.errors) return navigate(`/spots/${submit.id}`)
-        // else setErrors(submit.errors)
+        navigate(`/spots/${submit.id}`)
     }
 
     return (
