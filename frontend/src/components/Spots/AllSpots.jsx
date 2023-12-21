@@ -26,7 +26,7 @@ function AllSpots() {
                                     <p className="spot-price"><span style={{fontWeight: 'bold'}}>{`$${spot.price}`}</span> night</p>
                                 </div>
                                 <div className="spot-right">
-                                    <i className="fas fa-star">{` ${spot.avgRating.toFixed(1)}`}</i>
+                                    <i className="fas fa-star">{` ${spot.avgRating ? spot.avgRating.toFixed(1) : 'New'}`}</i>
                                 </div>
                             </div>
                         </div>
