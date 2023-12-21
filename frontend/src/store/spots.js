@@ -61,6 +61,7 @@ export const getSpotsThunk = () => async (dispatch) => {
     if(res.ok) {
         const data = await res.json()
         dispatch(getSpots(data))
+        return data
     }
 }
 
@@ -73,6 +74,7 @@ export const getCurrentUserSpotsThunk = () => async (dispatch) => {
     if(res.ok) {
         const data = await res.json()
         dispatch(getCurrentUserSpots(data))
+        return data
     }
 }
 
@@ -85,6 +87,7 @@ export const getSpotByIdThunk = (spotId) => async (dispatch) => {
     if(res.ok) {
         const data = await res.json()
         dispatch(getSpotById(data))
+        return data
     }
 }
 
@@ -98,6 +101,7 @@ export const createSpotThunk = (spot) => async (dispatch) => {
     if(res.ok) {
         const data = await res.json()
         dispatch(createSpot(data))
+        return data
     }
 }
 
@@ -111,6 +115,7 @@ export const updateSpotThunk = (spotId) => async (dispatch) => {
     if(res.ok) {
         const data = await res.json()
         dispatch(updateSpot(data))
+        return data
     }
 }
 

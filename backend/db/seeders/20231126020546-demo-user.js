@@ -29,67 +29,81 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password')
       },
       {
-        firstName: 'second',
-        lastName: 'secondlastname',
+        firstName: 'Harvey',
+        lastName: 'Specter',
         email: 'user2@user.io',
         username: 'FakeUser2',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
-        firstName: 'third',
-        lastName: 'thirdlastname',
+        firstName: 'Michael',
+        lastName: 'Ross',
         email: 'user3@user.io',
         username: 'FakeUser3',
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
-        firstName: 'fourth',
-        lastName: 'fourthlastname',
+        firstName: 'Donna',
+        lastName: 'Paulsen',
         email: 'user4@user.io',
         username: 'FakeUser4',
         hashedPassword: bcrypt.hashSync('password4')
       },
       {
-        firstName: 'fifth',
-        lastName: 'fifthlastname',
+        firstName: 'Louis',
+        lastName: 'Litt',
         email: 'user5@user.io',
         username: 'FakeUser5',
         hashedPassword: bcrypt.hashSync('password5')
       },
       {
-        firstName: 'sixth',
-        lastName: 'sixthlastname',
+        firstName: 'Rachel',
+        lastName: 'Zane',
         email: 'user6@user.io',
         username: 'FakeUser6',
         hashedPassword: bcrypt.hashSync('password6')
       },
       {
-        firstName: 'seventh',
-        lastName: 'seventhlastname',
+        firstName: 'Dana',
+        lastName: 'Scott',
         email: 'user7@user.io',
         username: 'FakeUser7',
         hashedPassword: bcrypt.hashSync('password7')
       },
       {
-        firstName: 'eighth',
-        lastName: 'eighthlastname',
+        firstName: 'Jessica',
+        lastName: 'Pearson',
         email: 'user8@user.io',
         username: 'FakeUser8',
         hashedPassword: bcrypt.hashSync('password8')
       },
       {
-        firstName: 'ninth',
-        lastName: 'ninthlastname',
+        firstName: 'Katrina',
+        lastName: 'Bennett',
         email: 'user9@user.io',
         username: 'FakeUser9',
         hashedPassword: bcrypt.hashSync('password9')
       },
       {
-        firstName: 'tenth',
-        lastName: 'tenthlastname',
+        firstName: 'Daniel',
+        lastName: 'Hardman',
         email: 'user10@user.io',
         username: 'FakeUser10',
         hashedPassword: bcrypt.hashSync('password10')
+      },
+      {
+        firstName: 'Jenny',
+        lastName: 'Griffith',
+        email: 'user11@user.io',
+        username: 'FakeUser11',
+        hashedPassword: bcrypt.hashSync('password11')
+      },
+      {
+        firstName: 'Travis',
+        lastName: 'Tanner',
+        email: 'user12@user.io',
+        username: 'FakeUser12',
+        hashedPassword: bcrypt.hashSync('password12')
       }
     ], { validate: true });
   },
@@ -104,7 +118,7 @@ module.exports = {
     options.tableName = 'Users';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser2', 'FakeUser3', 'FakeUser4', 'FakeUser5', 'FakeUser6', 'FakeUser7', 'FakeUser8', 'FakeUser9', 'FakeUser10'] }
+      username: { [Op.in]: ['Demo-lition', 'FakeUser2', 'FakeUser3', 'FakeUser4', 'FakeUser5', 'FakeUser6', 'FakeUser7', 'FakeUser8', 'FakeUser9', 'FakeUser10', 'FakeUser11', 'FakeUser12'] }
     }, {});
   }
 };
