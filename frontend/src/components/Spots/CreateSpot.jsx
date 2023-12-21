@@ -61,34 +61,18 @@ function CreateSpot() {
             validationsObj.price = 'Price is required'
         }
 
-        if(!previewImage.endsWith('.png') && !previewImage.endsWith('.jpg') && !previewImage.endsWith('.jpeg')) {
-            errorsArr.push('Preview image is required and must end in .png, .jpg, or .jpeg')
-            validationsObj.previewImage = 'Preview image is required and must end in .png, .jpg, or .jpeg'
+        if(!previewImage.length) {
+            errorsArr.push('Preview image is required')
+            validationsObj.previewImage = 'Preview image is required'
         }
 
-        if(image1) {
-            if(!image1.endsWith('.png') && !image1.endsWith('.jpg') && !image1.endsWith('.jpeg')) {
-                errorsArr.push('Image1 URL must end in .png, .jpg, or .jpeg')
-            }
-        }
+        const imageArr = [image1, image2, image3, image4]
 
-        if(image2) {
-            if(!image2.endsWith('.png') && !image2.endsWith('.jpg') && !image2.endsWith('.jpeg')) {
-                errorsArr.push('Image2 URL must end in .png, .jpg, or .jpeg')
+        imageArr.forEach((image, index) => {
+            if(image && !image.endsWith('.png') && !image.endsWith('.jpg') && !image.endsWith('.jpeg')) {
+                errorsArr.push(`Image ${index + 2} URL must end in .png, .jpg, or .jpeg`)
             }
-        }
-
-        if(image3) {
-            if(!image3.endsWith('.png') && !image3.endsWith('.jpg') && !image3.endsWith('.jpeg')) {
-                errorsArr.push('Image3 URL must end in .png, .jpg, or .jpeg')
-            }
-        }
-
-        if(image4) {
-            if(!image4.endsWith('.png') && !image4.endsWith('.jpg') && !image4.endsWith('.jpeg')) {
-                errorsArr.push('Image4 URL must end in .png, .jpg, or .jpeg')
-            }
-        }
+        })
 
         setErrors(errorsArr)
         setValidations(validationsObj)
@@ -207,7 +191,7 @@ function CreateSpot() {
                             onChange={(e) => setPrice(e.target.value)}
                             required
                         />
-                        {<span className="errors">{errors.find((error) => error.includes('Price'))}</span>}
+                        {<span className="errors">{errors.filter((error) => error.includes('Price'))}</span>}
                     </label>
                 </div>
             </div>
@@ -222,7 +206,7 @@ function CreateSpot() {
                         onChange={(e) => setPreviewImage(e.target.value)}
                         required
                     />
-                    {<span className="errors">{errors.find((error) => error.includes('Preview'))}</span>}
+                    {<span className="errors">{errors.filter((error) => error.includes('Preview'))}</span>}
                 </label>
                 <label className="label">
                     <input
@@ -231,7 +215,7 @@ function CreateSpot() {
                         placeholder='Image URL'
                         onChange={(e) => setImage1(e.target.value)}
                     />
-                    {<span className="errors">{errors.find((error) => error.includes('Image1'))}</span>}
+                    {<span className="errors">{errors.find((error) => error.includes('Image 2'))}</span>}
                 </label>
                 <label className="label">
                     <input
@@ -240,7 +224,7 @@ function CreateSpot() {
                         placeholder='Image URL'
                         onChange={(e) => setImage2(e.target.value)}
                     />
-                    {<span className="errors">{errors.find((error) => error.includes('Image2'))}</span>}
+                    {<span className="errors">{errors.find((error) => error.includes('Image 3'))}</span>}
                 </label>
                 <label className="label">
                     <input
@@ -249,7 +233,7 @@ function CreateSpot() {
                         placeholder='Image URL'
                         onChange={(e) => setImage3(e.target.value)}
                     />
-                    {<span className="errors">{errors.find((error) => error.includes('Image3'))}</span>}
+                    {<span className="errors">{errors.find((error) => error.includes('Image 4'))}</span>}
                 </label>
                 <label className="label">
                     <input
@@ -258,7 +242,7 @@ function CreateSpot() {
                         placeholder='Image URL'
                         onChange={(e) => setImage4(e.target.value)}
                     />
-                    {<span className="errors">{errors.find((error) => error.includes('Image4'))}</span>}
+                    {<span className="errors">{errors.find((error) => error.includes('Image 5'))}</span>}
                 </label>
             </div>
             <div className="create-spot-button">
