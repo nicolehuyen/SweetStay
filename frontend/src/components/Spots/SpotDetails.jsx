@@ -50,7 +50,7 @@ function SpotDetails() {
             </div>
             <div className="reserve-box">
                 <div className="reserve-box-left">
-                    <p className="spot-price"><span style={{fontWeight: 'bold'}}>{`$${spot.price}`}</span> night</p>
+                    <p className="spot-price"><span style={{fontWeight: 'bold'}}>{`$${spot.price.toFixed()}`}</span> night</p>
                 </div>
                 <div className="reserve-box-right">
                     <i className="fas fa-star">{` ${ratings()}`}</i>
