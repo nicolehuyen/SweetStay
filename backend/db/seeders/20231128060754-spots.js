@@ -29,7 +29,7 @@ module.exports = {
       lat: 36.7782595,
       lng: -119.4179312,
       name: 'Private Room in Sunny LA',
-      description: 'Welcome to a private room in our Spanish-style casita! Centrally located, close to LAX and all major highways.This is 1 Bed/1 Bath rental within a spacious 3 bed/2 bath home - You will have your own private bedroom and bathroom accessible via a private entrance. You will also have access to the main living spaces, dining and kitchen. I also reside on the property along with my Boston Terrier, Potter.',
+      description: 'Welcome to a private room in our Spanish-style casita! Centrally located, close to LAX and all major highways. This is a 1 Bed/1 Bath rental within a spacious 3 bed/2 bath home.',
       price: 88
     },
     {
@@ -41,7 +41,7 @@ module.exports = {
       lat: 30.2671534,
       lng: -97.7430573,
       name: 'The Chill Den',
-      description: `Welcome to Austin. Welcome home! This is my home, a place I'd like to share. If you plan to explore the city during the day and a refreshing peaceful sleep at night, this is a perfect place for you. Located only 15 mins from The Domain and 20 mins from Downtown, you will have easy access to everything Austin has to offer without compromising on safety.`,
+      description: `Welcome to Austin. Welcome home! This is my home, a place I'd like to share. If you plan to explore the city during the day and a refreshing peaceful sleep at night, this is a perfect place for you.`,
       price: 50
     },
     {
@@ -53,7 +53,7 @@ module.exports = {
       lat: 40.7127763,
       lng: -74.0059744,
       name: 'Cozy Private Bedroom in BedStuy',
-      description: 'Come stay in the spacious, sun filled 2.5 bedroom apartment in a beautiful brownstone. Located in residential BedSty area a few blocks from the G train the apt is within walking distance to shops, restaurants, and artisan coffee. You will also have an access to a cute rooftop with lounging chairs. Please note that Brooklyn is a lively and vibrant place, my neighbors like to grill out and play music, come stay if you enjoy the neighborhood feel.',
+      description: 'Come stay in the spacious, sun filled 2.5 bedroom apartment in a beautiful brownstone. Located in residential BedSty area a few blocks from the G train the apt is within walking distance to shops, restaurants, and artisan coffee.',
       price: 118
     },
     {
@@ -65,7 +65,7 @@ module.exports = {
       lat: 27.9505753,
       lng: -82.4571760,
       name: 'Two Queen Beds Close to Disney',
-      description: "Our room includes two queen size beds and a private bathroom. Our hotel offers a on-site restaurant and bar, 24 hour fitness center, and resort style pool. Experience a beautiful hotel in Lake Buena Vista! Our hotel focuses on the details while blending the excitement of the area’s most sought-after entertainment with luxurious accommodations skillfully designed to meet the needs of the next-gen savvy travelers.This stylish and unique place sets the stage for a memorable trip.",
+      description: "Our room includes two queen size beds and a private bathroom. Our hotel offers a on-site restaurant and bar, 24 hour fitness center, and resort style pool. Experience a beautiful hotel in Lake Buena Vista!",
       price: 89
     },
     {
@@ -89,7 +89,7 @@ module.exports = {
       lat: 50.7782555,
       lng: -100.4134312,
       name: 'Historic Westend',
-      description: `Welcome to our home! We are a beautifully blended family that loves to host. As Morehouse and Spelman graduates, we are thrilled to have returned to the Historic Westend and to share our space with travelers. We are right on the bus line, close to downtown, and literally 30-seconds from the highway. Our home offers great wifi and a whole lot of peace. Enjoy yourself by walking to the Beltline, having lunch at the Slutty Vegan or hanging out at one of the local breweries.`,
+      description: `Welcome to our home! We are a beautifully blended family that loves to host. As Morehouse and Spelman graduates, we are thrilled to have returned to the Historic Westend and to share our space with travelers.`,
       price: 56
     },
     {
@@ -101,7 +101,7 @@ module.exports = {
       lat: 24.1231534,
       lng: -96.7240573,
       name: 'Historic Music Row',
-      description: `Beautiful historic home, world-famous Music Row. A family home, on a family street where friends can visit on the front porch and write a song or two. High ceilings, transom windows, wood floors. Walk to Edgehill Village, Belmont, Vanderbilt, Broadway, The Gulch. We look forward to sharing Music City with you. Private Room/Attached Private Bath. First floor is staged for guests of property- dedicated guest kitchen, dining, living room, outdoor spaces. Hosts live on connected second floor.`,
+      description: `Beautiful historic home, world-famous Music Row. A family home, on a family street where friends can visit on the front porch and write a song or two. High ceilings, transom windows, wood floors.`,
       price: 101
     },
     {
@@ -125,7 +125,7 @@ module.exports = {
       lat: 20.9505753,
       lng: -60.4571760,
       name: 'Benji and Friends',
-      description: `Welcome to Benji and Friends! Go enjoy all of Portland during the day and relax and recharge here at night. Located on the main level, this private room is as comfortable as it gets. Rest up in the Tuft & Needle Mint king bed with lots of pillows. There’s ample storage with a dresser, luggage rack, and closet. Get some work done at the desk or enjoy some down time using the 43-inch TV or Alexa speaker. Feeling peckish? Grab a free snack in the mini fridge! Love dogs? You’re in luck–we have four!`,
+      description: `Welcome to Benji and Friends! Go enjoy all of Portland during the day and relax and recharge here at night. Located on the main level, this private room is as comfortable as it gets. Rest up in the Tuft & Needle Mint king bed with lots of pillows.`,
       price: 43
     },
     {
