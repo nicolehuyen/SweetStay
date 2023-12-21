@@ -19,6 +19,16 @@ function SpotDetails() {
         window.alert('Feature Coming Soon...')
     }
 
+    function ratings() {
+        if(spot.avgRating && spot.numReviews === 1) {
+            return `${spot.avgRating.toFixed(1)} · ${spot.numReviews} review`
+        } else if(spot.avgRating && spot.numReviews > 1) {
+            return `${spot.avgRating.toFixed(1)} · ${spot.numReviews} reviews`
+        } else {
+            return 'New'
+        }
+    }
+
     return (
         <section>
             <h1>{spot.name}</h1>
@@ -43,12 +53,12 @@ function SpotDetails() {
                     <p className="spot-price"><span style={{fontWeight: 'bold'}}>{`$${spot.price}`}</span> night</p>
                 </div>
                 <div className="reserve-box-right">
-                    <i className="fas fa-star">{` ${spot.avgRating.toFixed(1)} · ${spot.numReviews} ${spot.numReviews > 1 ? 'reviews' : 'review'}`}</i>
+                    <i className="fas fa-star">{` ${ratings()}`}</i>
                 </div>
                 <button onClick={reserve} className="reserve-button">Reserve</button>
             </div>
             <div className="review-section">
-                <h1><i className="fas fa-star">{` ${spot.avgRating.toFixed(1)} · ${spot.numReviews} ${spot.numReviews > 1 ? 'reviews' : 'review'}`}</i></h1>
+                <h1><i className="fas fa-star">{` ${ratings()}`}</i></h1>
             </div>
         </section>
     )
