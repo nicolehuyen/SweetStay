@@ -23,7 +23,7 @@ function AllSpots() {
                             <div className="text-container">
                                 <div className="spot-left">
                                     <span>{`${spot.city}, ${spot.state}`}</span>
-                                    <p className="spot-price"><span style={{fontWeight: 'bold'}}>{`$${spot.price.toFixed(0)}`}</span> night</p>
+                                    <p className="spot-price"><span style={{fontWeight: 'bold'}}>{`$${spot.price}`}</span> night</p>
                                 </div>
                                 <div className="spot-right">
                                     <i className="fas fa-star">{` ${spot.avgRating ? spot.avgRating.toFixed(1) : 'New'}`}</i>
