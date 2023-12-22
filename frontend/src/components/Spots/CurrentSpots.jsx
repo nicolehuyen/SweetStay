@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { getCurrentUserSpotsThunk } from "../../store/spots";
 import './CurrentSpots.css'
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import DeleteSpot from "./DeleteSpot";
 
 function CurrentSpots() {
     const navigate = useNavigate()
@@ -41,7 +43,7 @@ function CurrentSpots() {
                                 </div>
                                 <div className="manage-buttons">
                                     <button onClick={() => navigate(`/spots/${spot.id}/edit`)}>Update</button>
-                                    <button>Delete</button>
+                                    <OpenModalButton buttonText={"Delete"} modalComponent={<DeleteSpot spotId={spot.id}/>}/>
                                 </div>
                             </div>
                         ))}
