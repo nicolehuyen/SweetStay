@@ -179,7 +179,7 @@ function UpdateSpot() {
                 </div>
             </div>
             <div className="create-spot-button">
-                <button className="create-button" type="submit" disabled={Object.values(validations).length}>Create Spot</button>
+                <button className="create-button" type="submit" disabled={Object.values(validations).length}>Update your Spot</button>
             </div>
         </form>
     )

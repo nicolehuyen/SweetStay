@@ -8,7 +8,6 @@ import CurrentSpots from './components/Spots/CurrentSpots';
 import SpotDetails from './components/Spots/SpotDetails';
 import CreateSpot from './components/Spots/CreateSpot';
 import UpdateSpot from './components/Spots/UpdateSpot';
-// import DeleteSpot from './components/Spots/DeleteSpot';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -52,10 +51,6 @@ const router = createBrowserRouter([
         path: '/spots/:spotId/edit',
         element: <UpdateSpot />
       },
-      // {
-      //   path: '/spots/current',
-      //   element: <DeleteSpot />
-      // },
       {
         path: '*',
         element: <h2>Page Not Found</h2>
