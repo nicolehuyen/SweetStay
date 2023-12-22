@@ -62,7 +62,7 @@
     position: absolute;
     right: 23px;
     background-color: white;
-    padding: 10px 30px;
+    padding: 0px 18px;
     border: 1px solid black;
 }
 
@@ -78,9 +78,35 @@
     flex-direction: column;
 }
 
-.user-menu-text {
+.user-menu-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px;
+}
+
+.user-name {
+    padding-bottom: 5px;
+}
+
+.user-menu-divide {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 5px 30px;
+}
+
+.manage-spots-link {
     display: flex;
     justify-content: center;
+    text-decoration: none;
+    color: black;
+}
+
+.user-menu-logout {
+    display: flex;
+    justify-content: center;
+    padding: 5px 0px;
 }
 
 .logout-button {
