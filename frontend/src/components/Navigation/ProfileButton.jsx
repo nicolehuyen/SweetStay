@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
@@ -49,9 +50,14 @@ function ProfileButton({ user }) {
       <span className={ulClassName} ref={ulRef}>
         {user ? (
           <div className='user-menu'>
-            <span className='user-menu-text'>Hello, {user.firstName}</span>
-            <span className='user-menu-text'>{user.email}</span>
-            <span className='user-menu-text'>
+            <span className='user-menu-info'>
+              <span className='user-name'>Hello, {user.firstName}</span>
+              <span>{user.email}</span>
+            </span>
+            <span className='user-menu-divide'>
+              <NavLink to="/spots/current" className='manage-spots-link'>Manage Spots</NavLink>
+            </span>
+            <span className='user-menu-logout'>
               <button className='logout-button' onClick={logout}>Log Out</button>
             </span>
           </div>
