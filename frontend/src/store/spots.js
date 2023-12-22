@@ -91,7 +91,7 @@ export const getSpotByIdThunk = (spotId) => async (dispatch) => {
     }
 }
 
-export const createSpotThunk = (spot) => async (dispatch) => {
+export const createSpotThunk = (spot, images) => async (dispatch) => {
     const res = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -100,6 +100,42 @@ export const createSpotThunk = (spot) => async (dispatch) => {
 
     if(res.ok) {
         const data = await res.json()
+
+        const resPreviewImage = await csrfFetch(`/api/spots/${data.id}/images`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                url: images.previewImage,
+                preview: true
+            })
+        })
+
+        if(resPreviewImage.ok) {
+            const previewImageData = await resPreviewImage.json()
+            data.previewImage = previewImageData.url
+        }
+
+        const imageKeys = ['image1', 'image2', 'image3', 'image4']
+        for(const key of imageKeys) {
+            const imageUrl = images[key]
+
+            if(imageUrl) {
+                const resImage = await csrfFetch(`/api/spots/${data.id}/images`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        url: imageUrl,
+                        preview: true
+                    })
+                })
+
+                if(resImage.ok) {
+                    const imageData = await resImage.json()
+                    data[key] = imageData.url
+                }
+            }
+        }
+
         dispatch(createSpot(data))
         return data
     }

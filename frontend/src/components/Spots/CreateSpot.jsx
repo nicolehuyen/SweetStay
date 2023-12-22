@@ -90,12 +90,19 @@ function CreateSpot() {
             description,
             name,
             price,
-            previewImage,
             lat: 1,
             lng: 1
         }
 
-        const submit = await dispatch(createSpotThunk(newSpot))
+        const newImages = {
+            previewImage,
+            image1,
+            image2,
+            image3,
+            image4
+        }
+
+        const submit = await dispatch(createSpotThunk(newSpot, newImages))
 
         navigate(`/spots/${submit.id}`)
     }
