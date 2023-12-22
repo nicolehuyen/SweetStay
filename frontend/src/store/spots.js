@@ -141,11 +141,11 @@ export const createSpotThunk = (spot, images) => async (dispatch) => {
     }
 }
 
-export const updateSpotThunk = (spotId) => async (dispatch) => {
+export const updateSpotThunk = (updatedSpot, spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(spotId)
+        body: JSON.stringify(updatedSpot)
     })
 
     if(res.ok) {

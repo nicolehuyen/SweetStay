@@ -20,48 +20,48 @@ function CreateSpot() {
     const [image3, setImage3] = useState('')
     const [image4, setImage4] = useState('')
     const [errors, setErrors] = useState([])
-    const [validations, setValidations] = useState({});
+    const [validations, setValidations] = useState({})
 
     useEffect(() => {
         const errorsArr = []
         const validationsObj = {}
 
-        if(!country.length) {
+        if(!country) {
             errorsArr.push('Country is required')
             validationsObj.country = 'Country is required'
         }
 
-        if(!address.length) {
+        if(!address) {
             errorsArr.push('Address is required')
             validationsObj.address = 'Address is required'
         }
 
-        if(!city.length) {
+        if(!city) {
             errorsArr.push('City is required')
             validationsObj.city = 'City is required'
         }
 
-        if(!state.length) {
+        if(!state) {
             errorsArr.push('State is required')
             validationsObj.state = 'State is required'
         }
 
-        if(description.length < 30) {
+        if(String(description).length < 30) {
             errorsArr.push('Description needs a minimum of 30 characters')
             validationsObj.description = 'Description needs a minimum of 30 characters'
         }
 
-        if(!name.length) {
+        if(!name) {
             errorsArr.push('Name is required')
             validationsObj.name = 'Name is required'
         }
 
-        if(!price.length) {
+        if(!Number(price)) {
             errorsArr.push('Price is required')
             validationsObj.price = 'Price is required'
         }
 
-        if(!previewImage.length) {
+        if(!previewImage) {
             errorsArr.push('Preview image is required')
             validationsObj.previewImage = 'Preview image is required'
         }

@@ -13,8 +13,6 @@ function AllSpots() {
         dispatch(getSpotsThunk())
     }, [dispatch])
 
-    // console.log(spots)
-
     return (
         <section className="section">
             <div className="spots-container">
