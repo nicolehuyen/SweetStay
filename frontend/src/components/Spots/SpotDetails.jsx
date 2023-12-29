@@ -2,17 +2,25 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpotByIdThunk } from "../../store/spots";
 import { useParams } from "react-router";
+import SpotReviews from "../Reviews/SpotReviews";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import CreateReview from "../Reviews/CreateReview";
+// import { getSpotReviewsThunk } from "../../store/reviews";
 
 function SpotDetails() {
     const dispatch = useDispatch()
     const { spotId } = useParams()
     const spot = useSelector((state) => state.spots[spotId])
+    const sessionUser = useSelector((state) => state.session.user)
+    const reviewsObj = useSelector((state) => state.reviews)
+    const reviews = Object.values(reviewsObj)
 
     useEffect(() => {
         dispatch(getSpotByIdThunk(spotId))
+        // dispatch(getSpotReviewsThunk(spotId))
     }, [dispatch, spotId])
 
-    if(!spot) return null
+    if(!spot || !reviews) return null
 
     const reserve = (e) => {
         e.preventDefault()
@@ -28,6 +36,8 @@ function SpotDetails() {
             return 'New'
         }
     }
+
+    const hasUserReviewed = reviews.some((review) => review.User?.id === sessionUser?.id)
 
     return (
         <section>
@@ -59,6 +69,13 @@ function SpotDetails() {
             </div>
             <div className="review-section">
                 <h1><i className="fas fa-star">{` ${ratings()}`}</i></h1>
+                {sessionUser && sessionUser?.id !== spot?.Owner?.id && !hasUserReviewed && (
+                    <OpenModalButton buttonText={'Post Your Review'} modalComponent={<CreateReview spotId={spot.id}/>}/>
+                )}
+                {sessionUser && sessionUser?.id !== spot?.Owner?.id && reviews.length === 0 && (
+                    <p>Be the first to post a review!</p>
+                )}
+                <SpotReviews />
             </div>
         </section>
     )
