@@ -9,7 +9,7 @@ import DeleteSpot from "./DeleteSpot";
 function CurrentSpots() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector((state) => state.session.user)
     const spotsObj = useSelector((state) => state.spots)
     const spots = Object.values(spotsObj)
 
