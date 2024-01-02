@@ -3,12 +3,11 @@ import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
-import AllSpots from './components/Spots/AllSpots';
-import CurrentSpots from './components/Spots/CurrentSpots';
-import SpotDetails from './components/Spots/SpotDetails';
-import CreateSpot from './components/Spots/CreateSpot';
-import UpdateSpot from './components/Spots/UpdateSpot';
-// import DeleteSpot from './components/Spots/DeleteSpot';
+import AllSpots from './components/AllSpots/AllSpots';
+import CurrentSpots from './components/CurrentSpots/CurrentSpots';
+import SpotDetails from './components/SpotDetails/SpotDetails';
+import CreateSpot from './components/CreateSpot/CreateSpot';
+import UpdateSpot from './components/UpdateSpot/UpdateSpot';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -52,10 +51,6 @@ const router = createBrowserRouter([
         path: '/spots/:spotId/edit',
         element: <UpdateSpot />
       },
-      // {
-      //   path: '/spots/current',
-      //   element: <DeleteSpot />
-      // },
       {
         path: '*',
         element: <h2>Page Not Found</h2>

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
@@ -9,6 +9,7 @@ import './Navigation.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -33,10 +34,17 @@ function ProfileButton({ user }) {
 
   const closeMenu = () => setShowMenu(false);
 
+  const manageSpots = (e) => {
+    e.preventDefault()
+    closeMenu()
+    navigate('/spots/current')
+  }
+
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
+    navigate('/')
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -55,7 +63,7 @@ function ProfileButton({ user }) {
               <span>{user.email}</span>
             </span>
             <span className='user-menu-divide'>
-              <NavLink to="/spots/current" className='manage-spots-link'>Manage Spots</NavLink>
+              <button className='manage-spots-button' onClick={manageSpots}>Manage Spots</button>
             </span>
             <span className='user-menu-logout'>
               <button className='logout-button' onClick={logout}>Log Out</button>
