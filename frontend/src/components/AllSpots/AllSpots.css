@@ -1,8 +1,3 @@
-.section {
-    display: flex;
-    justify-content: center;
-}
-
 .spots-container {
     display: flex;
     flex-direction: row;
@@ -14,16 +9,38 @@
     max-width: 1300px;
 }
 
-.spot-link {
-    text-decoration: none;
-    color: black;
+.spot-tile {
+    cursor: pointer;
 }
 
-.spot-image {
+.all-spot-images {
     object-fit: cover;
-    width: 260px;
-    height: 260px;
+    width: 300px;
+    height: 300px;
     border-radius: 5%;
+}
+
+.tool-tip {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool-tip-text {
+    visibility: hidden;
+    position: absolute;
+    background-color: #BCAFD4;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    bottom: 42%;
+    width: 80%;
+}
+
+.tool-tip:hover .tool-tip-text {
+    visibility: visible;
 }
 
 .text-container {
@@ -39,7 +56,7 @@
     flex-direction: column;
 }
 
-.spot-price {
+.spot-prices {
     margin: 0px;
     padding-top: 5px;
 }

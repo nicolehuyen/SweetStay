@@ -1,25 +1,21 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux'
-import { createSpotThunk } from "../../store/spots"
-import { useNavigate } from 'react-router-dom';
-import './CreateSpot.css'
+import { updateSpotThunk } from "../../store/spots"
+import { useNavigate, useParams } from 'react-router-dom';
 
-function CreateSpot() {
+function UpdateSpot() {
+    const { spotId } = useParams()
+    const spot = useSelector((state) => state.spots[spotId])
+    const sessionUser = useSelector((state) => state.session.user)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const sessionUser = useSelector((state) => state.session.user)
-    const [country, setCountry] = useState('')
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [description, setDescription] = useState('')
-    const [name, setName] = useState('')
-    const [price, setPrice] = useState('')
-    const [previewImage, setPreviewImage] = useState('')
-    const [image1, setImage1] = useState('')
-    const [image2, setImage2] = useState('')
-    const [image3, setImage3] = useState('')
-    const [image4, setImage4] = useState('')
+    const [country, setCountry] = useState(spot?.country)
+    const [address, setAddress] = useState(spot?.address)
+    const [city, setCity] = useState(spot?.city)
+    const [state, setState] = useState(spot?.state)
+    const [description, setDescription] = useState(spot?.description)
+    const [name, setName] = useState(spot?.name)
+    const [price, setPrice] = useState(spot?.price)
     const [errors, setErrors] = useState([])
     const [validations, setValidations] = useState({})
 
@@ -63,28 +59,15 @@ function CreateSpot() {
             validationsObj.price = 'Price is required'
         }
 
-        if(!previewImage) {
-            errorsArr.push('Preview image is required')
-            validationsObj.previewImage = 'Preview image is required'
-        }
-
-        const imageArr = [image1, image2, image3, image4]
-
-        imageArr.forEach((image, index) => {
-            if(image && !image.endsWith('.png') && !image.endsWith('.jpg') && !image.endsWith('.jpeg')) {
-                errorsArr.push(`Image ${index + 2} URL must end in .png, .jpg, or .jpeg`)
-            }
-        })
-
         setErrors(errorsArr)
         setValidations(validationsObj)
 
-    }, [navigate, sessionUser, country, address, city, state, description, name, price, previewImage, image1, image2, image3, image4])
+    }, [navigate, sessionUser, country, address, city, state, description, name, price])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const newSpot = {
+        const updatedSpot = {
             country,
             address,
             city,
@@ -96,15 +79,7 @@ function CreateSpot() {
             lng: 1
         }
 
-        const newImages = {
-            previewImage,
-            image1,
-            image2,
-            image3,
-            image4
-        }
-
-        const submit = await dispatch(createSpotThunk(newSpot, newImages))
+        const submit = await dispatch(updateSpotThunk(updatedSpot, spotId))
 
         navigate(`/spots/${submit.id}`)
     }
@@ -112,11 +87,11 @@ function CreateSpot() {
     return (
         <>
             {sessionUser && (
-                <form onSubmit={handleSubmit}>
-                    <div className="location-input">
-                        <h1>Create a new Spot</h1>
-                        <h2>Where&apos;s your place located?</h2>
-                        <p>Guests will only get your exact address once they booked a reservation.</p>
+                <form onSubmit={handleSubmit} className="create-spot-form">
+                    <div className="location-input section-divider-line">
+                        <h1>Update Your Spot</h1>
+                        <h2 className="create-spot-h2">Where&apos;s your place located?</h2>
+                        <p className="create-spot-p">Guests will only get your exact address once they booked a reservation.</p>
                         <label className="label">
                             {<span>Country <span className="errors">{errors.filter((error) => error.includes('Country'))}</span></span>}
                             <input
@@ -138,9 +113,10 @@ function CreateSpot() {
                                 />
                         </label>
                         <div className="city-state-input">
-                            <label className="label">
+                            <label className="label label-city">
                                 {<span>City <span className="errors">{errors.filter((error) => error.includes('City'))}</span></span>}
                                 <input
+                                    className="city-input"
                                     type='text'
                                     value={city}
                                     placeholder='City'
@@ -148,8 +124,8 @@ function CreateSpot() {
                                     required
                                     />
                             </label>
-                            <span>, </span>
-                            <label className="label">
+                            <span className="city-comma">, </span>
+                            <label className="label label-state">
                                 {<span>State <span className="errors">{errors.filter((error) => error.includes('State'))}</span></span>}
                                 <input
                                     type='text'
@@ -161,11 +137,12 @@ function CreateSpot() {
                             </label>
                         </div>
                     </div>
-                    <div className="description-input">
-                        <h2>Describe your place to guests</h2>
-                        <p>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
+                    <div className="description-input section-divider-line">
+                        <h2 className="create-spot-h2">Describe your place to guests</h2>
+                        <p className="create-spot-p">Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</p>
                         <label className="label">
-                            <input
+                            <textarea
+                                className="description-text-box"
                                 type='text'
                                 value={description}
                                 placeholder='Please write at least 30 characters'
@@ -175,9 +152,9 @@ function CreateSpot() {
                             {<span className="errors">{errors.filter((error) => error.includes('Description'))}</span>}
                         </label>
                     </div>
-                    <div className="title-input">
-                        <h2>Create a title for your spot</h2>
-                        <p>Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
+                    <div className="title-input section-divider-line">
+                        <h2 className="create-spot-h2">Create a title for your spot</h2>
+                        <p className="create-spot-p">Catch guests&apos; attention with a spot title that highlights what makes your place special.</p>
                         <label className="label">
                             <input
                                 type='text'
@@ -189,13 +166,14 @@ function CreateSpot() {
                             {<span className="errors">{errors.filter((error) => error.includes('Name'))}</span>}
                         </label>
                     </div>
-                    <div className="price-input">
-                        <h2>Set a base price for your spot</h2>
-                        <p>Competitive pricing can help your listing stand out and rank higher in search results.</p>
+                    <div className="price-input section-divider-line">
+                        <h2 className="create-spot-h2">Set a base price for your spot</h2>
+                        <p className="create-spot-p">Competitive pricing can help your listing stand out and rank higher in search results.</p>
                         <div className="price-input-detail">
-                            <span>$</span>
+                            <span className="dollar-sign">$</span>
                             <label className="label">
                                 <input
+                                    className="price-text-box"
                                     type='number'
                                     value={price}
                                     placeholder='Price per night (USD)'
@@ -206,58 +184,8 @@ function CreateSpot() {
                             </label>
                         </div>
                     </div>
-                    <div className="photos-input">
-                        <h2>Liven up your spot with photos</h2>
-                        <p>Submit a link to at least one photo to publish your spot.</p>
-                        <label className="label">
-                            <input
-                                type='url'
-                                value={previewImage}
-                                placeholder='Preview Image URL'
-                                onChange={(e) => setPreviewImage(e.target.value)}
-                                required
-                                />
-                            {<span className="errors">{errors.filter((error) => error.includes('Preview'))}</span>}
-                        </label>
-                        <label className="label">
-                            <input
-                                type='url'
-                                value={image1}
-                                placeholder='Image URL'
-                                onChange={(e) => setImage1(e.target.value)}
-                                />
-                            {<span className="errors">{errors.find((error) => error.includes('Image 2'))}</span>}
-                        </label>
-                        <label className="label">
-                            <input
-                                type='url'
-                                value={image2}
-                                placeholder='Image URL'
-                                onChange={(e) => setImage2(e.target.value)}
-                                />
-                            {<span className="errors">{errors.find((error) => error.includes('Image 3'))}</span>}
-                        </label>
-                        <label className="label">
-                            <input
-                                type='url'
-                                value={image3}
-                                placeholder='Image URL'
-                                onChange={(e) => setImage3(e.target.value)}
-                                />
-                            {<span className="errors">{errors.find((error) => error.includes('Image 4'))}</span>}
-                        </label>
-                        <label className="label">
-                            <input
-                                type='url'
-                                value={image4}
-                                placeholder='Image URL'
-                                onChange={(e) => setImage4(e.target.value)}
-                                />
-                            {<span className="errors">{errors.find((error) => error.includes('Image 5'))}</span>}
-                        </label>
-                    </div>
                     <div className="create-spot-button">
-                        <button className="create-button" type="submit" disabled={Object.values(validations).length}>Create Spot</button>
+                        <button className="create-button" type="submit" disabled={Object.values(validations).length}>Update your Spot</button>
                     </div>
                 </form>
             )}
@@ -265,4 +193,4 @@ function CreateSpot() {
     )
 }
 
-export default CreateSpot;
+export default UpdateSpot;

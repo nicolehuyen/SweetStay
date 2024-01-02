@@ -51,16 +51,17 @@ function CreateReview({ spotId }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>How was your stay?</h1>
-            <input
+        <form className='post-review-form' onSubmit={handleSubmit}>
+            <h2 className="post-review-h2">How was your stay?</h2>
+            <textarea
+                className="post-review-text-box"
                 type='text'
                 value={review}
                 placeholder='Leave your review here...'
                 onChange={(e) => setReview(e.target.value)}
                 minLength={10}
             />
-            <div>
+            <div className="star-rating-div">
                 {[...Array(5)].map((star, index) => {
                     const rating = index + 1
                     return (
