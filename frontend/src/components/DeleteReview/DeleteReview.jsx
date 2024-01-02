@@ -14,11 +14,13 @@ function DeleteReview({ reviewId, spotId }) {
     }
 
     return (
-        <form onSubmit={handleDelete}>
-            <h1>Confirm Delete</h1>
+        <form className='delete-form' onSubmit={handleDelete}>
+            <h2 className="delete-spot-h2">Confirm Delete</h2>
             <p>Are you sure you want to delete this review?</p>
-            <button type="submit">Yes (Delete Review)</button>
-            <button onClick={() => closeModal()}>No (Keep Review)</button>
+            <div className="delete-buttons">
+                <button className='yes-button' type="submit">Yes (Delete Review)</button>
+                <button className='no-button' onClick={() => closeModal()}>No (Keep Review)</button>
+            </div>
         </form>
     )
 }

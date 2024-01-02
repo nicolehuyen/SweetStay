@@ -2,8 +2,9 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getSpotReviewsThunk } from "../../store/reviews"
 import { useParams } from "react-router-dom"
-import DeleteReview from "./DeleteReview"
+import DeleteReview from '../DeleteReview/DeleteReview'
 import OpenModalButton from "../OpenModalButton/OpenModalButton"
+import './SpotReviews.css'
 
 function SpotReviews() {
     const dispatch = useDispatch()
@@ -35,9 +36,9 @@ function SpotReviews() {
         <section>
             {reviews.reverse().map((review) => (
                 <div key={review.id}>
-                    <h3>{review.User?.firstName}</h3>
-                    <p>{month(review.createdAt)} {year(review.createdAt)}</p>
-                    <p>{review.review}</p>
+                    <h3 className="review-name">{review.User?.firstName}</h3>
+                    <p className="review-date">{month(review.createdAt)} {year(review.createdAt)}</p>
+                    <p className="review-comment">{review.review}</p>
                     {sessionUser?.id === review.User?.id && (
                         <OpenModalButton buttonText={"Delete"} modalComponent={<DeleteReview reviewId={review.id} spotId={spotId}/>}/>
                     )}

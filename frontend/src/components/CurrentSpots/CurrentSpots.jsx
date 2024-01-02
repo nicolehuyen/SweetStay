@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getCurrentUserSpotsThunk } from "../../store/spots";
 import './CurrentSpots.css'
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import DeleteSpot from "./DeleteSpot";
+import DeleteSpot from "../DeleteSpot/DeleteSpot";
 
 function CurrentSpots() {
     const navigate = useNavigate()
@@ -21,10 +21,10 @@ function CurrentSpots() {
     return (
         <>
             {sessionUser && (
-                <div className="section">
+                <div className="manage-spots-section">
                     <div className="manage-spots-container">
                         <h1 className="manage-title">Manage Your Spots</h1>
-                        <button onClick={() => navigate('/spots/new')}>Create a New Spot</button>
+                        <button className='create-new-spot-button' onClick={() => navigate('/spots/new')}>Create a New Spot</button>
                     </div>
                     <div className="spots-container">
                         {spots.map((spot) => (
@@ -34,7 +34,7 @@ function CurrentSpots() {
                                     <div className="text-container">
                                         <div className="spot-left">
                                             <span>{`${spot.city}, ${spot.state}`}</span>
-                                            <p className="spot-price"><span style={{fontWeight: 'bold'}}>{`$${Number(spot.price).toFixed(2)}`}</span> night</p>
+                                            <p className="spot-prices"><span style={{fontWeight: 'bold'}}>{`$${Number(spot.price).toFixed(2)}`}</span> night</p>
                                         </div>
                                         <div className="spot-right">
                                             <i className="fas fa-star">{` ${spot.avgRating ? spot.avgRating.toFixed(1) : 'New'}`}</i>
@@ -42,7 +42,7 @@ function CurrentSpots() {
                                     </div>
                                 </div>
                                 <div className="manage-buttons">
-                                    <button onClick={() => navigate(`/spots/${spot.id}/edit`)}>Update</button>
+                                    <button className='update-spot-button' onClick={() => navigate(`/spots/${spot.id}/edit`)}>Update</button>
                                     <OpenModalButton buttonText={"Delete"} modalComponent={<DeleteSpot spotId={spot.id}/>}/>
                                 </div>
                             </div>
