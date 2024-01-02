@@ -1,3 +1,8 @@
+.all-spots-section {
+    display: flex;
+    justify-content: center;
+}
+
 .spots-container {
     display: flex;
     flex-direction: row;
