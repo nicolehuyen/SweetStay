@@ -15,25 +15,27 @@ function AllSpots() {
     }, [dispatch])
 
     return (
-        <div className="spots-container">
-            {spots.map((spot) => (
-                <div key={spot.id} className='spot-tile' onClick={() => navigate(`/spots/${spot.id}`)}>
-                    <div className="tool-tip">
-                        <img className='all-spot-images' src={spot.previewImage} alt='preview' />
-                        <span className="tool-tip-text">{spot.name}</span>
-                    </div>
-                    <div className="text-container">
-                        <div className="spot-left">
-                            <span>{`${spot.city}, ${spot.state}`}</span>
-                            <p className="spot-prices"><span style={{fontWeight: 'bold'}}>{`$${Number(spot.price).toFixed(2)}`}</span> night</p>
+        <section className="all-spots-section">
+            <div className="spots-container">
+                {spots.map((spot) => (
+                    <div key={spot.id} className='spot-tile' onClick={() => navigate(`/spots/${spot.id}`)}>
+                        <div className="tool-tip">
+                            <img className='all-spot-images' src={spot.previewImage} alt='preview' />
+                            <span className="tool-tip-text">{spot.name}</span>
                         </div>
-                        <div className="spot-right">
-                            <i className="fas fa-star">{` ${spot.avgRating ? spot.avgRating.toFixed(1) : 'New'}`}</i>
+                        <div className="text-container">
+                            <div className="spot-left">
+                                <span>{`${spot.city}, ${spot.state}`}</span>
+                                <p className="spot-prices"><span style={{fontWeight: 'bold'}}>{`$${Number(spot.price).toFixed(2)}`}</span> night</p>
+                            </div>
+                            <div className="spot-right">
+                                <i className="fas fa-star">{` ${spot.avgRating ? spot.avgRating.toFixed(1) : 'New'}`}</i>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
-        </div>
+                ))}
+            </div>
+        </section>
     )
 }
 
