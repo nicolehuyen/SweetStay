@@ -10,7 +10,7 @@ https://sweet-stay.onrender.com/
 
 ### Languages
 
-![Static Badge](https://img.shields.io/badge/Javascript-red?style=for-the-badge&logo=javascript&logoColor=white)
+![Static Badge](https://img.shields.io/badge/Javascript-brown?style=for-the-badge&logo=javascript&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/CSS-orange?style=for-the-badge&logo=css3)
 ![Static Badge](https://img.shields.io/badge/HTML-yellow?style=for-the-badge&logo=html5&logoColor=white)
 
@@ -44,6 +44,15 @@ https://sweet-stay.onrender.com/
 [airbnb-db-diagram-info]: https://appacademy-open-assets.s3.us-west-1.amazonaws.com/Modular-Curriculum/content/week-12/airbnb-db-diagram-info.txt
 
 [sweetstay-db-schema]: ./images/airbnb_dbdiagram.png
+
+# Landing Page
+![Landing Page](./gifs/LandingPage.gif)
+
+# Spot Details
+![Spot Details](./gifs/SpotDetails.gif)
+
+# Manage Spots
+![Manage Spots](./gifs/ManageSpots.gif)
 
 # Endpoints
 
